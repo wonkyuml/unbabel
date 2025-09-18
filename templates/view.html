@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}Unbabel - Viewing Room{% endblock %}
+
+{% block head %}
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="room-id" content="{{ room_id }}">
+{% endblock %}
+
+{% block content %}
+<section class="viewer-container">
+    <div class="viewer-header">
+        <h1>Live Translation</h1>
+        <div class="room-info">
+            <p>Room ID: <span id="room-id">{{ room_id }}</span></p>
+        </div>
+    </div>
+
+    <div class="viewer-status">
+        <div class="status-indicator">
+            <div id="status-light" class="status-light"></div>
+            <span id="status-text">Connecting...</span>
+        </div>
+    </div>
+
+    <div class="captions-container">
+        <div class="captions-box">
+            <div id="captions-original" class="captions original">
+                <h3>Original (Korean)</h3>
+                <div class="captions-content"></div>
+            </div>
+            <div id="captions-translated" class="captions translated">
+                <h3>Translated (English)</h3>
+                <div class="captions-content"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="viewer-controls">
+        <div class="control-group">
+            <button id="auto-scroll" class="button small active">Auto-scroll: ON</button>
+            <button id="clear-captions" class="button small">Clear Captions</button>
+            <button id="toggle-view" class="button small">Toggle View</button>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', path='js/viewer.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block title %}Unbabel - Broadcasting Room{% endblock %}
+
+{% block head %}
+<meta name="room-id" content="{{ room_id }}">
+{% endblock %}
+
+{% block content %}
+<section class="broadcast-container">
+    <div class="broadcast-header">
+        <h1>Broadcasting Room</h1>
+        <div class="room-info">
+            <p>Room ID: <span id="room-id">{{ room_id }}</span></p>
+            <button id="copy-link" class="button small">Copy Viewer Link</button>
+        </div>
+    </div>
+
+    <div class="broadcast-controls">
+        <div class="control-group">
+            <label for="microphone-select" class="control-label">Select Microphone:</label>
+            <select id="microphone-select" class="control-select"></select>
+        </div>
+        <div class="control-group">
+            <button id="start-broadcast" class="button primary">Start Microphone</button>
+            <button id="stop-broadcast" class="button danger" disabled>Stop Microphone</button>
+        </div>
+        <div class="status-indicator">
+            <div id="status-light" class="status-light"></div>
+            <span id="status-text">Ready to broadcast</span>
+        </div>
+    </div>
+
+    <div class="broadcast-stats">
+        <div class="stat">
+            <span class="stat-label">Status:</span>
+            <span id="connection-status">Disconnected</span>
+        </div>
+        <div class="stat">
+            <span class="stat-label">Latency:</span>
+            <span id="latency">--</span>
+        </div>
+        <div class="stat">
+            <span class="stat-label">Viewers:</span>
+            <span id="viewer-count">0</span>
+        </div>
+    </div>
+
+    <div class="transcript-container">
+        <h2>Live Transcript</h2>
+        <div class="transcript-box">
+            <div id="transcript-original" class="transcript original">
+                <h3>Original (Korean)</h3>
+                <div class="transcript-content"></div>
+            </div>
+            <div id="transcript-translated" class="transcript translated">
+                <h3>Translated (English)</h3>
+                <div class="transcript-content"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="viewer-link">
+        <h3>Share this link with your viewers:</h3>
+        <div class="link-container">
+            <input type="text" id="viewer-url" readonly>
+            <button id="copy-viewer-url" class="button small">Copy</button>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', path='js/broadcaster.js') }}"></script>
+{% endblock %}
